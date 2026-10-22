@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'lib/pages/home.dart'
+      - 'lib/ui/navigation_dock.dart'
       - '.github/workflows/build-arm64.yml'
 
 permissions:
