@@ -17,20 +17,20 @@ import 'package:material_ui/material_ui.dart';
 
 import 'liquid_glass.dart';
 
-const double _barHeight = 62;
+const double _barHeight = 50;
 const double _barPadding = 4;
-const double _edgeMargin = 21;
+const double _edgeMargin = 12;
 const double _shadowRoom = 8;
 const double _hitSlop = 8;
 const double _maxItemExtent = 86;
 const double _minLensWidth = 84;
 const _fullWidthCount = 5;
-const double _iconSize = 28;
-const double _labelGap = 2;
+const double _iconSize = 22;
+const double _labelGap = 1;
 const double _labelInset = 2;
-const double _labelSize = 10;
-const double _labelLeading = 14.5;
-const double _minLabelSize = 9;
+const double _labelSize = 9;
+const double _labelLeading = 12;
+const double _minLabelSize = 8;
 const double _pressGrowth = 1 / 8;
 const double _maxPressGrowth = 16;
 const double _lensGrowth = 8;
