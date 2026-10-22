@@ -114,6 +114,7 @@ class _HomeShell extends ConsumerWidget {
             visible: isMobile && !floating,
             child: _NavigationPadding(
               child: NavigationBar(
+                height: 68,
                 destinations: [
                   for (final (index, item) in navigationItems.indexed)
                     NavigationDestination(
