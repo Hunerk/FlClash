@@ -349,18 +349,23 @@ class NavigationDock extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Flexible(
-                child: _HitSlop(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: destinations.length >= _fullWidthCount
-                          ? double.infinity
-                          : destinations.length * _maxItemExtent +
-                                _barPadding * 4,
-                    ),
-                    child: FloatingNavigationBar(
-                      destinations: destinations,
-                      selectedIndex: selectedIndex,
-                      onSelected: onSelected,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.sizeOf(context).width * 2 / 3,
+                  ),
+                  child: _HitSlop(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: destinations.length >= _fullWidthCount
+                            ? double.infinity
+                            : destinations.length * _maxItemExtent +
+                                  _barPadding * 4,
+                      ),
+                      child: FloatingNavigationBar(
+                        destinations: destinations,
+                        selectedIndex: selectedIndex,
+                        onSelected: onSelected,
+                      ),
                     ),
                   ),
                 ),
