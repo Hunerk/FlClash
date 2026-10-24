@@ -18,7 +18,7 @@ import 'package:material_ui/material_ui.dart';
 import 'liquid_glass.dart';
 
 const double _barHeight = 50;
-const double _dockWidthFactor = 2 / 3;
+const double _dockWidthFactor = 8 / 15; // 20% shorter than the previous 2/3 width
 const double _barPadding = 4;
 const double _edgeMargin = 12;
 const double _shadowRoom = 8;
@@ -347,24 +347,22 @@ class NavigationDock extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Flexible(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: MediaQuery.sizeOf(context).width * _dockWidthFactor,
-                  ),
-                  child: _HitSlop(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxWidth: destinations.length >= _fullWidthCount
-                            ? double.infinity
-                            : destinations.length * _maxItemExtent +
-                                  _barPadding * 4,
-                      ),
-                      child: FloatingNavigationBar(
-                        destinations: destinations,
-                        selectedIndex: selectedIndex,
-                        onSelected: onSelected,
-                      ),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.sizeOf(context).width * _dockWidthFactor,
+                ),
+                child: _HitSlop(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: destinations.length >= _fullWidthCount
+                          ? double.infinity
+                          : destinations.length * _maxItemExtent +
+                                _barPadding * 4,
+                    ),
+                    child: FloatingNavigationBar(
+                      destinations: destinations,
+                      selectedIndex: selectedIndex,
+                      onSelected: onSelected,
                     ),
                   ),
                 ),
