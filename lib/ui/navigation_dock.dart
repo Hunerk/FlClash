@@ -18,6 +18,7 @@ import 'package:material_ui/material_ui.dart';
 import 'liquid_glass.dart';
 
 const double _barHeight = 50;
+const double _dockWidthFactor = 2 / 3;
 const double _barPadding = 4;
 const double _edgeMargin = 12;
 const double _shadowRoom = 8;
@@ -349,7 +350,7 @@ class NavigationDock extends StatelessWidget {
               Flexible(
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
-                    maxWidth: MediaQuery.sizeOf(context).width * 2 / 3,
+                    maxWidth: MediaQuery.sizeOf(context).width * _dockWidthFactor,
                   ),
                   child: _HitSlop(
                     child: ConstrainedBox(
