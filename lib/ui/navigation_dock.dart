@@ -1704,19 +1704,6 @@ class _FloatingBarItemState extends State<_FloatingBarItem> {
               color: color,
               fill: 1,
             ),
-            const SizedBox(height: _labelGap),
-            SizedBox(
-              height: widget.labelHeight,
-              child: Center(
-                child: Text(
-                  widget.destination.label,
-                  maxLines: 1,
-                  softWrap: false,
-                  overflow: TextOverflow.ellipsis,
-                  style: widget.labelStyle?.copyWith(color: color),
-                ),
-              ),
-            ),
           ],
         ),
       ),
