@@ -18,7 +18,7 @@ import 'package:material_ui/material_ui.dart';
 import 'liquid_glass.dart';
 
 const double _barHeight = 50;
-const double _dockWidthFactor = 8 / 15; // 20% shorter than the previous 2/3 width
+const double _dockWidthFactor = 19 / 30; // 5% shorter than the previous 8/15 width
 const double _barPadding = 4;
 const double _edgeMargin = 12;
 const double _shadowRoom = 8;
@@ -140,9 +140,10 @@ Rect _lensRect({
   if (pitch + _barPadding * 2 >= _minLensWidth) {
     return (pitch: pitch, lens: pitch + _barPadding * 2, inset: _barPadding);
   }
-  final lens = math.min(_minLensWidth, span);
-  final closed = (span - lens) / (count - 1);
-  return (pitch: closed, lens: lens, inset: (lens - closed) / 2);
+  // Keep the selected lens within one destination when the dock is compact.
+  // A fixed 84 dp minimum makes the lens overlap neighboring destinations.
+  final lens = math.min(_minLensWidth, pitch + _barPadding * 2);
+  return (pitch: pitch, lens: lens, inset: (lens - pitch) / 2);
 }
 
 /// A value that springs toward a target the finger may move every frame.
