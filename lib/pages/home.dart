@@ -118,6 +118,9 @@ class _HomeShell extends ConsumerWidget {
           AnimatedVisibility.bottomNavigation(
             visible: isMobile && !floating,
             child: _NavigationPadding(
+              child: Transform.scale(
+              scaleY: 0.9,
+              alignment: Alignment.bottomCenter,
               child: NavigationBar(
                 destinations: [
                   for (final (index, item) in navigationItems.indexed)
@@ -133,6 +136,7 @@ class _HomeShell extends ConsumerWidget {
                 onDestinationSelected: (index) {
                   _handleToPage(navigationItems[index].label, ref);
                 },
+              ),
               ),
             ),
           ),
