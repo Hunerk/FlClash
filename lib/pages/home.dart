@@ -118,34 +118,25 @@ class _HomeShell extends ConsumerWidget {
           AnimatedVisibility.bottomNavigation(
             visible: isMobile && !floating,
             child: _NavigationPadding(
-            child: SizedBox(
-              height: 68,
-              child: OverflowBox(
-                minHeight: 80,
-                maxHeight: 80,
-                alignment: Alignment.bottomCenter,
-                child: Transform.scale(
-                  scale: 0.85,
-                  alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    width: MediaQuery.sizeOf(context).width,
-                    child: NavigationBar(
-                      destinations: [
-                        for (final (index, item) in navigationItems.indexed)
-                          NavigationDestination(
-                            icon: AnimatedGlyph(
-                              glyph: item.glyph,
-                              filled: index == state.currentIndex,
-                            ),
-                            label: item.label.label,
-                          ),
-                      ],
-                      selectedIndex: state.currentIndex,
-                      onDestinationSelected: (index) {
-                        _handleToPage(navigationItems[index].label, ref);
-                      },
-                    ),
-                  ),
+            child: Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width * 0.85,
+                child: NavigationBar(
+                  destinations: [
+                    for (final (index, item) in navigationItems.indexed)
+                      NavigationDestination(
+                        icon: AnimatedGlyph(
+                          glyph: item.glyph,
+                          filled: index == state.currentIndex,
+                        ),
+                        label: item.label.label,
+                      ),
+                  ],
+                  selectedIndex: state.currentIndex,
+                  onDestinationSelected: (index) {
+                    _handleToPage(navigationItems[index].label, ref);
+                  },
                 ),
               ),
             ),
