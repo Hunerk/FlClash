@@ -118,29 +118,23 @@ class _HomeShell extends ConsumerWidget {
           AnimatedVisibility.bottomNavigation(
             visible: isMobile && !floating,
             child: _NavigationPadding(
-            child: Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                width: MediaQuery.sizeOf(context).width * 0.70,
-                child: NavigationBar(
-                  destinations: [
-                    for (final (index, item) in navigationItems.indexed)
-                      NavigationDestination(
-                        icon: AnimatedGlyph(
-                          glyph: item.glyph,
-                          filled: index == state.currentIndex,
-                        ),
-                        label: item.label.label,
+              child: NavigationBar(
+                destinations: [
+                  for (final (index, item) in navigationItems.indexed)
+                    NavigationDestination(
+                      icon: AnimatedGlyph(
+                        glyph: item.glyph,
+                        filled: index == state.currentIndex,
                       ),
-                  ],
-                  selectedIndex: state.currentIndex,
-                  onDestinationSelected: (index) {
-                    _handleToPage(navigationItems[index].label, ref);
-                  },
-                ),
+                      label: item.label.label,
+                    ),
+                ],
+                selectedIndex: state.currentIndex,
+                onDestinationSelected: (index) {
+                  _handleToPage(navigationItems[index].label, ref);
+                },
               ),
             ),
-          ),
           ),
         ],
       ),
