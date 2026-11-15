@@ -137,7 +137,6 @@ class _HomeShell extends ConsumerWidget {
                   _handleToPage(navigationItems[index].label, ref);
                 },
               ),
-              ),
             ),
           ),
         ],
