@@ -121,7 +121,7 @@ class _HomeShell extends ConsumerWidget {
             child: Align(
               alignment: Alignment.center,
               child: SizedBox(
-                width: MediaQuery.sizeOf(context).width * 0.85,
+                width: MediaQuery.sizeOf(context).width * 0.70,
                 child: NavigationBar(
                   destinations: [
                     for (final (index, item) in navigationItems.indexed)
