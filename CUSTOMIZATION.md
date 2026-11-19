@@ -1,43 +1,52 @@
-# FlClash 0.9.4 customization notes
+# FlClash 0.9.4 定制修改记录
 
-This file records the user-requested UI and Android build customizations. Keep it updated when making future changes.
+本文记录当前版本已经提出并落实到代码中的界面调整及 Android 构建命名。后续修改以本文为基准；如代码实际值发生变化，先核对代码再更新本文。
 
-## Floating bottom dock (悬浮底栏)
+## 一、悬浮底栏（Floating Navigation Dock）
 
-- Dock height: `52.5 dp`.
-- Overall width: `Transform.scale(scaleX: 0.95)`; scales the dock itself by 5%, centered. It must NOT use the available screen width as the scale baseline or shrink the page/screen layout.
-- Dock horizontal padding: `3.72 dp`.
-- Edge margin: `12 dp`.
-- Shadow room: `8 dp`.
-- Maximum item extent: `60.078 dp`.
-- Minimum resting selection-lens width: `78.12 dp`.
-- Menu text labels are hidden; menu glyph icons remain visible. Accessibility semantics retain each destination label.
-- Icon size: previously `20.46 dp`; now `22.51 dp` (approximately +10%).
-- Selected lens / indicator frame: width and height are both scaled to `85%` of the previous calculated dimensions (15% smaller).
-- The same 85% lens geometry is used while the user holds and drags across menu items, so the animated switching/drag frame is also smaller. Keep the lens visual and its glass/content clipping based on the same rectangle.
-- Current horizontal dock scale remains 95%; do not confuse this with the 85% lens size.
+### 尺寸与布局
 
-## Standard NavigationBar (普通底栏, separate from the floating dock)
+- 底栏高度：`52.5 dp`。
+- 四个菜单项时底栏外框当前目标宽度：`242.43 dp`。
+  - 计算依据：`(4 × 60.078 + 4 × 3.72) × 0.95 = 242.4324 dp`，记录为约 `242.43 dp`。
+  - 这是四个菜单项、未受屏幕可用宽度进一步限制时的当前宽度；不得把缩放基准改成整个屏幕宽度。
+- 底栏宽度缩放：在原有菜单项宽度基础上，底栏自身水平缩放至 `95%`，并水平居中；不得缩小页面或屏幕布局宽度。
+- 菜单项最大宽度：`60.078 dp`。
+- 底栏水平内边距参数：`3.72 dp`。
+- 底栏左右外边距：`12 dp`。
+- 阴影预留空间：`8 dp`。
+- 选中框静止状态最小宽度参数：`78.12 dp`。
+- 菜单文字：不显示文字标签，只显示图标；保留各菜单项的无障碍语义名称。
 
-- Height: changed from `80 dp` to `48 dp`.
-- Selected indicator size: changed from `64 x 32 dp` to `64 x 26 dp`.
-- Icon/label column spacing: changed from `4 dp` to `1 dp`.
-- Label text moved upward by `2 dp` using `Transform.translate(offset: Offset(0, -2))`.
-- These settings apply to the standard `NavigationBar`, not the floating dock.
+### 图标与选中指示框
 
-## Android app identity and build
+- 菜单图标尺寸：由 `20.46 dp` 增至 `22.51 dp`，约放大 `10%`。
+- 当前选中菜单指示框：宽度和高度均在此前计算尺寸基础上缩小 `15%`，即使用原尺寸的 `85%`。
+- 长按菜单并拖动切换时出现的动态指示框：与普通选中指示框使用相同的 `85%` 尺寸比例，避免长按切换时框体过大。
+- 普通选中状态、长按/拖动动画状态、玻璃效果裁剪区域应使用一致的指示框几何尺寸；以后调整时不要只改其中一个状态。
 
-- Android launcher/app display name: `FlClash` (not Nightly).
-- App release line: `dev`; app version: `0.9.4`.
-- ARM64 APK output name: `FlClash-dev-0.9.4-android-arm64.apk`.
-- GitHub Actions artifact name: `FlClash-dev-0.9.4-android-arm64`.
-- Build command pins the package version using `--tag v0.9.4` to avoid automatic `nightly.DATE.COMMIT` suffixes.
-- Target: Android ARM64 (`arm64-v8a`).
-- CI toolchain currently configured as Flutter `3.50.0`, Go `1.27.1`, NDK `r28c`.
+## 二、普通 NavigationBar（与悬浮底栏分开）
 
-## Future change checklist
+- 高度：由 `80 dp` 调整为 `48 dp`。
+- 选中指示框：由 `64 × 32 dp` 调整为 `64 × 26 dp`。
+- 图标与文字的垂直间距：由 `4 dp` 调整为 `1 dp`。
+- 文字位置：向上移动 `2 dp`。
+- 以上参数只适用于普通 `NavigationBar`，不要与悬浮底栏的尺寸混淆。
 
-- Keep floating dock and standard NavigationBar changes separate.
-- When changing the dock width, scale the dock widget itself, not the full screen or available width.
-- When changing the selection frame, update the shared lens rectangle so the normal selected state and long-press/drag animation stay consistent.
-- Preserve the exact artifact naming above unless the user requests another version/name.
+## 三、Android 应用与 APK 命名
+
+- Android 桌面显示名称：`FlClash`。
+- 应用版本：`0.9.4`。
+- 构建目标：Android `arm64-v8a`。
+- APK 文件名必须为：`FlClash-0.9.4-android-arm64-v8a.apk`。
+- GitHub Actions 构建产物名称建议与文件名主体一致：`FlClash-0.9.4-android-arm64-v8a`。
+- 不得在 APK 文件名或构建产物名称中追加 `nightly`、日期或提交号。
+- 不得把 `FlClash-dev-0.9.4-nightly.DATE.COMMIT-android-arm64` 作为最终交付名称。
+
+## 四、后续修改注意事项
+
+1. 悬浮底栏与普通 `NavigationBar` 是两套独立组件，修改前先确认目标组件。
+2. 悬浮底栏宽度按当前四菜单项约 `242.43 dp` 作为记录基准；不要用屏幕宽度乘比例来代替底栏自身宽度。
+3. 修改选中指示框时，普通选中状态和长按/拖动动态状态必须同步调整。
+4. 修改图标尺寸时，只调整菜单图标，不要误改指示框或底栏整体尺寸。
+5. 每次完成代码修改和构建后，核对本文件、实际代码常量、APK 文件名及 Actions artifact 名称是否一致。
