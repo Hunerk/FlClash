@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  FLUTTER_VERSION: '3.47.6'
+  FLUTTER_VERSION: '3.50.0'
   GO_VERSION: '1.27.1'
   NDK_VERSION: r28c
 
@@ -74,7 +74,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: FlClash-0.9.3-android-arm64
+          name: FlClash-0.9.4-android-arm64
           path: dist/*.apk
           if-no-files-found: error
           retention-days: 14
