@@ -1,4 +1,4 @@
-# Builds the ARM64 APK from the current FlClash v0.9.4 source tree. Trigger rebuild.
+# Builds FlClash v0.9.4 ARM64 APK with the latest Hunerk prism_ui floating dock update.
 name: Build ARM64 APK
 
 on:
