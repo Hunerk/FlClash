@@ -1,4 +1,4 @@
-# Builds the ARM64 APK from the current FlClash source tree (v0.9.4 baseline).
+# Builds the ARM64 APK from the current FlClash v0.9.4 source tree. Trigger rebuild.
 name: Build ARM64 APK
 
 on:
