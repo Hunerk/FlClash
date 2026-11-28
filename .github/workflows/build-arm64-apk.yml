@@ -37,6 +37,7 @@ jobs:
           cache: true
 
       - name: Setup Android NDK
+        id: ndk
         uses: nttld/setup-ndk@v1
         with:
           ndk-version: r28c
@@ -54,6 +55,8 @@ jobs:
         run: flutter pub get
 
       - name: Build ARM64 APK
+        env:
+          ANDROID_NDK_HOME: ${{ steps.ndk.outputs.ndk-path }}
         run: dart tool/package.dart android --env stable --arch arm64 --tag v0.9.5 -v
 
       - name: Upload APK
