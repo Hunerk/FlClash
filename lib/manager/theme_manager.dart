@@ -74,9 +74,9 @@ class ThemeManager extends ConsumerWidget {
             systemNavigationBarIconBrightness: iconBrightness,
             systemNavigationBarColor: Colors.transparent,
             systemNavigationBarDividerColor: Colors.transparent,
-            // Pages scroll under the navigation bar. Android scrims only a
-            // three-button bar for it; the gesture handle stays clear.
-            systemNavigationBarContrastEnforced: true,
+            // Keep the transparent navigation bar free of Android's
+            // contrast scrim so the app background blends into the system bar.
+            systemNavigationBarContrastEnforced: false,
           ),
           sized: false,
           child: child,
